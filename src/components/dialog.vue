@@ -1,6 +1,5 @@
 <script setup>
   import debounce from "lodash/debounce";
-  import { defineEmits } from "vue";
   const props = defineProps({  
     config: {
       type: Object,
@@ -20,7 +19,7 @@
 </script>
 
 <template lang='pug'>
-#Default
+#Dialog
   .dialog-mask(@click="ClickMask")
   .content-area
     .content
@@ -34,7 +33,7 @@
 </template>
 
 <style lang="scss" scoped>
-#Default {
+#Dialog {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -59,7 +58,7 @@
   }
 }
 // 元件
-#Default {
+#Dialog {
   .content {
     background: #fff;
     border-radius: 5px;

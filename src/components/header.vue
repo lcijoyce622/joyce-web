@@ -4,18 +4,7 @@ import small from "@/assets/Rectangle.svg"
 import close from "@/assets/close.svg"
 import { Dialog } from "@/plugins/dialog/index.js";
 
-function clickFullScreen () {
-  const elem = document.getElementById("header");
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.msRequestFullscreen) {
-    elem.msRequestFullscreen();
-  } else if (elem.mozRequestFullScreen) {
-    elem.mozRequestFullScreen();
-  } else if (elem.webkitRequestFullscreen) {
-    elem.webkitRequestFullscreen();
-  }
-};
+
 function CloseFlow () {
   DialogTest();
 }
@@ -26,6 +15,10 @@ const DialogTest = async () => {
     cancelText: "取消"
   });
 };
+const emit = defineEmits(['full-screen'])
+const clickFullScreen = () => {
+  emit("full-screen")
+}
 </script>
 
 <template lang='pug'>

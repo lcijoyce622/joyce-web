@@ -9,11 +9,11 @@
 
 
 
-@media (min-width: 1024px) {
+/* @media (min-width: 1024px) { */
   body {
     padding: 0;
     margin: 0;
-    background-color: #252526;
+    background-color: #1E1E1E;
     /* display: flex;
     place-items: center; */
   }
@@ -23,4 +23,4 @@
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem; */
   }
-}
+/* } */
