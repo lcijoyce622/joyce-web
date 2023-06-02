@@ -6,3 +6,7 @@ import { RouterView } from 'vue-router'
 RouterView
 </template>
 
+<style>
+@import "@/styles/icon/fontello-embedded.scss";
+
+</style>

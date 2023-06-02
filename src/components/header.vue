@@ -1,6 +1,6 @@
 <script setup>
-import fullIcon from "@/assets/Group 5.svg"
-import small from "@/assets/Rectangle.svg"
+import fullIcon from "@/assets/bigger.svg"
+import small from "@/assets/smaller.svg"
 import close from "@/assets/close.svg"
 import { Dialog } from "@/plugins/dialog/index.js";
 
@@ -38,7 +38,7 @@ const clickFullScreen = () => {
   width: 100%;
   height: 30px;
   border-radius: 10px 10px 0 0;
-  border:  solid #787878;
+  border: solid #787878;
   border-width: 1px 0px 0px 0px;
   .left-area {
     display: flex;

@@ -1,6 +1,8 @@
 <script setup>
 import Header from "@/components/header.vue"
 import NavBar from "@/components/navbar.vue"
+import Footer from "@/components/footer.vue"
+import MainContent from "@/components/mainContent.vue"
 // 開啟全螢幕 ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 function clickFullScreen () {
   const elem = document.getElementById("Default");
@@ -14,6 +16,7 @@ function clickFullScreen () {
     elem.webkitRequestFullscreen();
   }
 };
+
 </script>
 
 // TODO nav bar(tabs)
@@ -23,9 +26,11 @@ function clickFullScreen () {
 <template lang="pug">
 Header(@full-screen="clickFullScreen")
 #Default
-  NavBar
-  p 111212
-
+  .content
+    NavBar
+    MainContent
+    
+  Footer
 
 //- .main
 //-   RouterLink(to="/") Home
@@ -38,9 +43,26 @@ Header(@full-screen="clickFullScreen")
 
 <style lang="scss" scoped>
 #Default {
+  position: relative;
   color: white;
+  // height: calc(100vh - 150px);
+  // overflow-y: hidden;
+  display: grid;
+  grid-template-rows: 1fr 25px;
+
+  .content {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 50px 1fr;
+
+    }
+  }
 }
 
 @media (min-width: 1024px) {
 }
+
 </style>
