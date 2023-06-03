@@ -1,9 +1,7 @@
 <script setup>
-// import TheWelcome from '../components/TheWelcome.vue'
+import MainContent from "@/components/mainContent.vue"
 </script>
 
-<template>
-  <main>
-    <!-- <TheWelcome /> -->
-  </main>
+<template lang="pug">
+MainContent
 </template>

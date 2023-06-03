@@ -2,20 +2,20 @@
 import Header from "@/components/header.vue"
 import NavBar from "@/components/navbar.vue"
 import Footer from "@/components/footer.vue"
-import MainContent from "@/components/mainContent.vue"
 // 開啟全螢幕 ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
-function clickFullScreen () {
-  const elem = document.getElementById("Default");
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.msRequestFullscreen) {
-    elem.msRequestFullscreen();
-  } else if (elem.mozRequestFullScreen) {
-    elem.mozRequestFullScreen();
-  } else if (elem.webkitRequestFullscreen) {
-    elem.webkitRequestFullscreen();
-  }
-};
+// function clickFullScreen () {
+//   const elem = document.getElementById("Default");
+//   if (elem.requestFullscreen) {
+//     elem.requestFullscreen();
+//   } else if (elem.msRequestFullscreen) {
+//     elem.msRequestFullscreen();
+//   } else if (elem.mozRequestFullScreen) {
+//     elem.mozRequestFullScreen();
+//   } else if (elem.webkitRequestFullscreen) {
+//     elem.webkitRequestFullscreen();
+//   }
+// };
+import { RouterView } from 'vue-router'
 
 </script>
 
@@ -28,8 +28,8 @@ Header(@full-screen="clickFullScreen")
 #Default
   .content
     NavBar
-    MainContent
-    
+    RouterView
+    //- RouterLink(to="/") Home
   Footer
 
 //- .main

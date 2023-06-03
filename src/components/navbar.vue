@@ -1,4 +1,5 @@
 <script setup>
+import { useRouter } from "vue-router";
 // import files from "@/assets/files.svg"
 const fileObj = {
   id: 1,
@@ -14,13 +15,15 @@ const contentObj = {
     { fileTitle: "聯絡方式" }
   ]
 }
+const router = useRouter();
+
 </script>
 
 <template lang='pug'>
 .navbar
   .icon-bar
     .top-area
-      .icon.icon-files
+      .icon.icon-files(@click="router.push('/test')")
       .icon.icon-search
       .icon.icon-source-control
       .icon.icon-extensions
