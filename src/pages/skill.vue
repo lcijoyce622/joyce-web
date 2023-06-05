@@ -2,11 +2,8 @@
 </script>
 
 <template lang='pug'>
-p {{ 4444 }}
+h1 技能
 </template>
 
 <style lang="scss" scoped>
-p {
-  color: red;
-}
 </style>

@@ -15,9 +15,12 @@ const DialogTest = async () => {
     cancelText: "取消"
   });
 };
-const emit = defineEmits(['full-screen'])
+const emit = defineEmits(['full-screen', 'close-file-bar'])
 const clickFullScreen = () => {
   emit("full-screen")
+}
+const EmitCloseFileBar = () => {
+  emit("close-file-bar");
 }
 </script>
 
@@ -30,10 +33,17 @@ const clickFullScreen = () => {
       img.img(:src="small")
     .green-dot(@click="clickFullScreen")
       img.img(:src="fullIcon")
+  .right-area
+    .icon-layout-panel-off
+    .icon-layout-sidebar-left-off(@click="EmitCloseFileBar")
+
+
 </template>
 
 <style lang="scss" scoped>
 #header {
+  display: flex;
+  justify-content: space-between;
   background-color: #3C3C3C;
   width: 100%;
   height: 30px;
@@ -55,6 +65,13 @@ const clickFullScreen = () => {
         opacity: 1;
       }
     }
+  }
+  .right-area {
+    padding-right: 10px;
+    color: white;
+    display: flex;
+    gap: 5px;
+    align-items: center;
   }
   .dot {
     position: relative;

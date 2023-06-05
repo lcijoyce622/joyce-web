@@ -2,19 +2,30 @@
 import Header from "@/components/header.vue"
 import NavBar from "@/components/navbar.vue"
 import Footer from "@/components/footer.vue"
+import { ref } from "vue"
 // 開啟全螢幕 ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
-// function clickFullScreen () {
-//   const elem = document.getElementById("Default");
-//   if (elem.requestFullscreen) {
-//     elem.requestFullscreen();
-//   } else if (elem.msRequestFullscreen) {
-//     elem.msRequestFullscreen();
-//   } else if (elem.mozRequestFullScreen) {
-//     elem.mozRequestFullScreen();
-//   } else if (elem.webkitRequestFullscreen) {
-//     elem.webkitRequestFullscreen();
-//   }
-// };
+const fullscreenElement = ref(false);
+function clickFullScreen () {
+  const elem = document.getElementById("view");
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.msRequestFullscreen) {
+    elem.msRequestFullscreen();
+  } else if (elem.mozRequestFullScreen) {
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) {
+    elem.webkitRequestFullscreen();
+  }
+  fullscreenElement.value = true;
+};
+function exitFullscreen () {
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+    fullscreenElement.value = false;
+  } else {
+    document.documentElement.requestFullscreen();
+  }
+};
 import { RouterView } from 'vue-router'
 
 </script>
@@ -28,7 +39,9 @@ Header(@full-screen="clickFullScreen")
 #Default
   .content
     NavBar
-    RouterView
+    #view
+      h1(v-if="fullscreenElement" @click="exitFullscreen") 離開全螢幕
+      RouterView
     //- RouterLink(to="/") Home
   Footer
 

@@ -371,6 +371,12 @@
       ]
     },
     {
+      "uid": "7bf14281af5633a597f85b061ef1cfb9",
+      "css": "angle-right",
+      "code": 61701,
+      "src": "fontawesome"
+    },
+    {
       "uid": "8b7f5334f7948cf33e2b1daa2830b755",
       "css": "close",
       "code": 59396,

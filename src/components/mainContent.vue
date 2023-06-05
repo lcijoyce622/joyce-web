@@ -6,6 +6,7 @@ const otherIconList = iconFile.glyphs.map((itemObj) => `icon-${itemObj.css}`);
 
 <template lang='pug'>
 .icon-areas
+  h1 個人檔案
   div(v-for="icon in otherIconList" :key="icon")
     p {{ icon }}
     div(:class="icon")
