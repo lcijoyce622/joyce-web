@@ -72,10 +72,12 @@ const OpenFolder = (file) => {
 
 <style lang="scss" scoped>
 .navbar {
-  height: 100%;
+  width: 350px;
   display: grid;
   grid-template-columns: 45px 1fr;
   @media (max-width: 768px) {
+    height: unset;
+    width: 100%;
     grid-template-columns: 1fr 0;
   }
 }
@@ -86,7 +88,7 @@ const OpenFolder = (file) => {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 0;
+  // padding: 8px 0;
   @media (max-width: 768px) {
     flex-direction: row;
   }
@@ -115,10 +117,10 @@ const OpenFolder = (file) => {
   user-select: none;
   color: #a5a5a5d7;
   font-size: 14px;
-  height: calc(100vh - 58px);
+  height: calc(100vh - 55px);
   background-color: #252526;
   overflow-y: scroll;
-  padding: 10px 5px;
+  padding: 0px 5px;
   @media (max-width: 768px) {
     display: none;
   }

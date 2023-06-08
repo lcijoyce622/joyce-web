@@ -6,7 +6,7 @@ import { ref } from "vue"
 // 開啟全螢幕 ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 const fullscreenElement = ref(false);
 function clickFullScreen () {
-  const elem = document.getElementById("view");
+  const elem = document.getElementById("main-content");
   if (elem.requestFullscreen) {
     elem.requestFullscreen();
   } else if (elem.msRequestFullscreen) {
@@ -35,15 +35,13 @@ import { RouterView } from 'vue-router'
 // TODO main(coding area)
 // TODO footer(terminal)
 <template lang="pug">
-Header(@full-screen="clickFullScreen")
+Header.header(@full-screen="clickFullScreen")
 #Default
-  .content
-    NavBar
-    #view
-      h1(v-if="fullscreenElement" @click="exitFullscreen") 離開全螢幕
-      RouterView
+  NavBar.navbar
+  h1(v-if="fullscreenElement" @click="exitFullscreen") 離開全螢幕
+  RouterView#main-content
     //- RouterLink(to="/") Home
-  Footer
+Footer.footer
 
 //- .main
 //-   RouterLink(to="/") Home
@@ -55,27 +53,41 @@ Header(@full-screen="clickFullScreen")
 </template>
 
 <style lang="scss" scoped>
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 99;
+}
 #Default {
+  background-color: #1E1E1E;
+  padding-top: 30px;
+  padding-left: 350px;
   position: relative;
   color: white;
-  // height: calc(100vh - 150px);
-  // overflow-y: hidden;
-  display: grid;
-  grid-template-rows: 1fr 25px;
-
-  .content {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 350px 1fr;
-    @media (max-width: 768px) {
-      grid-template-columns: 1fr;
-      grid-template-rows: 50px 1fr;
-
-    }
+  max-width: 100vw;
+  @media (max-width: 768px) {
+    padding-left: 0px;
+  }
+  .navbar {
+    z-index: 98;
+    position: fixed;
+    left: 0;
+  }
+  #main-content {
+    padding-bottom: 30px;
   }
 }
 
 @media (min-width: 1024px) {
 }
+.footer {
+  z-index: 99;
+  height: 25px;
+  width: 100%;
+  background-color: #3779C6;
+  position: fixed;
+  bottom: 0;
+}
+
 
 </style>

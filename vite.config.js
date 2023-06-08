@@ -11,6 +11,10 @@ export default defineConfig({
     Pages(),
     Layouts()
   ],
+  server: {
+    host: "0.0.0.0",
+    port: 5000
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
