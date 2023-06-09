@@ -171,7 +171,7 @@ code {
   font-size: 1.125rem;
 }
 .f-14 {
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 .ani {
