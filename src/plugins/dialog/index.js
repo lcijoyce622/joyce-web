@@ -11,6 +11,7 @@ const defConfig = {
   showOk: true,
   showCancel: true,
   maskClose: true,
+  showBug: false,
   texts: []
 };
 // -----------------
