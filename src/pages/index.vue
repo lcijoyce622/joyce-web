@@ -9,7 +9,7 @@ onMounted(async () => {
   await nextTick();
   Prism.highlightAll();
 })
-const typingTextInfo = `I'm a Front-End Web Developer...😁`;
+const typingTextInfo = `I'm a Front-End Web Developer...!😁`;
 const typingTexts = ref("");
 const count = ref(0);
 const forward = ref(true);
