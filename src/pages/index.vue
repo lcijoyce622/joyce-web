@@ -1,7 +1,7 @@
 <script setup>
 // import MainContent from "@/components/mainContent.vue"
 import Prism from "prismjs";
-import "prismjs/themes/prism-funky.css";
+import "@/styles/css/prism.css";
 import codeTemplate from "@/components/codeTemplate.vue"
 import { htmlData, cssData, jsData } from "@/static/aboutMe.js"
 import { onMounted, nextTick, ref, onBeforeUnmount } from 'vue'
@@ -291,50 +291,5 @@ code {
     color:#AC92EC;
   }
 }
-::deep {
-  code[class*="language-"] {
-	background: #1E1E1E;
-	color: white;
-  }
-  .token.comment,
-  .token.prolog,
-  .token.doctype,
-  .token.cdata {
-    color: #65f848;
-  }
-  .token.punctuation {
-    color: #9b9898;
-  }
-  .token.property,
-  .token.tag,
-  .token.boolean,
-  .token.number,
-  .token.constant,
-  .token.symbol {
-    color: #689BD1;
-  }
-  .token.selector,
-  .token.attr-name,
-  .token.string,
-  .token.char,
-  .token.builtin {
-    color: rgb(105 255 226);
-  }
 
-  .token.operator,
-  .token.entity,
-  .token.url,
-  .language-css .token.string,
-  .token.variable,
-  .token.inserted {
-    color: yellowgreen;
-  }
-
-  .token.atrule,
-  .token.attr-value,
-  .token.keyword {
-    color: #ff6363;
-  }
-
-}
 </style>
