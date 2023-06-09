@@ -1,7 +1,7 @@
 <script setup>
 // import MainContent from "@/components/mainContent.vue"
 import Prism from "prismjs";
-import "prismjs/themes/prism-funky.css";
+import "@/styles/css/prism.css";
 import codeTemplate from "@/components/codeTemplate.vue"
 import { htmlData, cssData, jsData } from "@/static/aboutMe.js"
 import { onMounted, nextTick, ref, onBeforeUnmount } from 'vue'
@@ -9,7 +9,7 @@ onMounted(async () => {
   await nextTick();
   Prism.highlightAll();
 })
-const typingTextInfo = `I'm a Front-End Web Developer...😁`;
+const typingTextInfo = `I'm a Front-End Web Developer...!😁`;
 const typingTexts = ref("");
 const count = ref(0);
 const forward = ref(true);

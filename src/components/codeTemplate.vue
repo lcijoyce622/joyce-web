@@ -1,6 +1,6 @@
 <script setup>
 import Prism from "prismjs";
-import "prismjs/themes/prism-funky.css";
+import "@/styles/css/prism.css";
 const props = defineProps({
   // html tag
   tag: {
