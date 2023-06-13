@@ -7,107 +7,33 @@ gsap.registerPlugin(ScrollTrigger);
 import { onMounted } from "vue";
 const gif = ref(new URL(`../assets/pixel.gif`, import.meta.url).href)
 onMounted(() => {
-  // gsap.to('.dot', {x: 100, duration:1,})
-  // gsap.to('.dot', {y: 100, duration:1})
-  const t1 = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".item0", // 決定scrolltrigger要以哪一個元素作為觸發基準點
-      markers: true, // 開啟start & end標記點，單純方便瀏覽動畫開始與結束點
-      start: 'top 5%', // 決定動畫開始點的位置
-      end: 'top 1%', // 決定動畫結束點的位置
-      scrub: true, //重要！開啟scrub來決定動畫播放是否依賴視窗滾動
-    },
-  })
-  const t2 = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".item1", // 決定scrolltrigger要以哪一個元素作為觸發基準點
-      markers: true, // 開啟start & end標記點，單純方便瀏覽動畫開始與結束點
-      start: 'top 5%', // 決定動畫開始點的位置
-      end: 'top 1%', // 決定動畫結束點的位置
-      scrub: true, //重要！開啟scrub來決定動畫播放是否依賴視窗滾動
-    },
-  })
-  // 使用timeline控制動畫
+  const line = document.querySelector(".line")
 
-  // const tt = gsap.timeline({
-  //   scrollTrigger: {
-  //     trigger: ".timeline-area", // 決定scrolltrigger要以哪一個元素作為觸發基準點
-  //     markers: true, // 開啟start & end標記點，單純方便瀏覽動畫開始與結束點
-  //     start: 'top 15%', // 決定動畫開始點的位置
-  //     end: 'top -20%', // 決定動畫結束點的位置
-  //     scrub: true, //重要！開啟scrub來決定動畫播放是否依賴視窗滾動
-  //     // pin: true, // 釘選元素
-  //   },
-  // })
-  // const tl = ScrollTrigger.create({
-  //   markers: true,
-  //   trigger: ".li",
-  //   start: 'top 15%', // 決定動畫開始點的位置
-  //   end: 'top 1%', // 決定動畫結束點的位置
-  //   scrub: true, //重要！開啟scrub來決定動畫播放是否依賴視窗滾動
-  //   }); 
-  // tl.to('.dot', {
-  //   top: '10%', // 距外層容器top 0px
-  //   // left: '50%', // 距外層容器left 50%
-  //   xPercent: '-50', // translate(-50%, 0)
-  //   duration: 5, // 動畫持續時間之比例
-  //   position: 'absolute', // position: 'absolute'，絕對位置才能使用left, right...等
-  // })
-  // t2.to('.dot', {
-  //   top: '500px', // 距外層容器top 0px
-  //   // left: '50%', // 距外層容器left 50%
-  //   xPercent: '-50', // translate(-50%, 0)
-  //   duration: 20, // 動畫持續時間之比例
-  //   position: 'absolute', // position: 'absolute'，絕對位置才能使用left, right...等
-  // })
-  t1.from('.dot', { opacity: 0, top: '0%', duration: 1 ,position: 'absolute',});
-  t1.to('.dot', { opacity: 1,top: '10%', duration: 1 , position: 'absolute',});
-  t2.from('.dot', { opacity: 1,top: '10%', duration: 1 ,position: 'absolute',});
-  t2.to('.dot', { opacity: 1,top: '50%', duration: 1 , position: 'absolute',});
-  // tt.to('.dot', {
-  //   top: '0%', // 距外層容器top 0px
-  //   // left: '50%', // 距外層容器left 50%
-  //   // xPercent: '-50', // translate(-50%, 0)
-  //   // duration: 20, // 動畫持續時間之比例
-  //   position: 'absolute', // position: 'absolute'，絕對位置才能使用left, right...等
-  // }).to('.dot', {
-  //     top: '90%',
-  //     // yPercent: '-100', // translate(0, -100%)
-  //     // duration: 20,
-  //     position: 'absolute',
-  //   })
+  ScrollTrigger.create({
+    //以box2作為觸發時機
+    trigger: line,
+    // markers: true,
+    //向下滾動進入start點時觸發callback
+    onEnter: function () {
+      gsap.to('.line',{ duration: 20, delay: 1, height: "100%", visibility: "visible", ease: "expo"})
+      gsap.to('.dot', { opacity: 1, delay: 1, duration: 0 ,ease: "expo"})
+      gsap.from('.item0', { opacity: 0, delay: 1, duration: 2 ,ease: "expo", y: 100})
+      gsap.from('.item1', { opacity: 0, delay: 1.5, duration: 2 ,ease: "expo", y: 100})
+      gsap.from('.item2', { opacity: 0, delay: 2, duration: 2 ,ease: "expo", y: 100})
+      gsap.from('.item3', { opacity: 0, delay: 2.5, duration: 2 ,ease: "expo", y: 100})
+
+    },
+  });
+
 })
-function reset() {
-}
-function animated() {
-  gsap.to('.dot', {x: 100, duration:1,})
-
-    //   this.$gsap.gsap.to(".car-area", {
-    //   ease: "expo.out",
-    //   duration: 10,
-    //   repeat: -1,
-    // });
-    // const animation = this.$gsap.gsap.timeline()
-    // this.$gsap.gsap.set(".car", { x: 760 });
-    // this.$gsap.gsap.set(".flag", { x: 0 ,y:0, rotate:0});
-
-    // animation.fromTo(".title-text1",{  opacity: 0, visibility: "hidden" },{  opacity: 1, visibility: "visible" ,duration: 1, })
-    //   .fromTo(".title-text2",{  opacity: 0, visibility: "hidden" },{  opacity: 1, visibility: "visible" ,duration: 1, })
-    //   .to(".car",{  opacity: 1, visibility: "visible" ,duration: 1, },"<")
-    //   .to(".line",{  opacity: 1, visibility: "visible" ,duration: 1, },"<")
-    //   .to(".car",{opacity: 1, visibility: "visible", x: 50, duration: 2, })
-    //   .to(".flag",{ opacity: 1, visibility: "visible", x: 0, y: -20, rotate: -20, duration: 1, })
-  }
-
-
 
 const  experienceDataArr = [
   {
     title:"前進中",
-    date:"2023-future",
+    date:"2023 - NOW",
     descrArr:[
       {
-        subtitle:"持續學習",
+        subtitle:"持續學習 🏃🏻‍♀️",
         desc: [
           "持續學習Vue3、TypeScript、Nuxt3、React..."
         ]
@@ -123,7 +49,7 @@ const  experienceDataArr = [
   },
   {
     title:"泰爾科技股份有限公司",
-    date:"2021-2023",
+    date:"2021 - 2023",
     descrArr:[
       {
         subtitle:"前端工程師",
@@ -147,7 +73,7 @@ const  experienceDataArr = [
   },
   {
     title:"精進自己有興趣的領域、了解技術內容",
-    date:"2019-2021",
+    date:"2019 - 2021",
     descrArr:[
       {
         subtitle:"畢業後｜精進自己有興趣的領域、了解技術內容：",
@@ -160,19 +86,19 @@ const  experienceDataArr = [
         ]
       },
       {
-        subtitle:"利用線上資源實作side projects",
+        subtitle:"線上課程｜利用線上資源實作side projects",
         desc: [
           "在網路上學習了Vue.js、firebase realtime database等技術，並利用所學的技術實作side projects。",
           "在side projects中運用所學的技術，使我對於前端開發有更深入的了解。"
         ]
       }
     ],
-    color:"#68D543"
+    color:"#C42D8C"
   },
 
   {
     title:"靜宜大學資訊工程學系",
-    date:"2015-2019",
+    date:"2015 - 2019",
     descrArr:[
       {
         subtitle:"大學生涯｜學習專業技術、競賽佳作、團隊分工",
@@ -191,19 +117,15 @@ const  experienceDataArr = [
         ]
       },
     ],
-    color:"#C42D8C"
-  },
+    color:"#43d3d5"
 
-  // {title:"Title 3" , date:"2016" , descr:"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit, cumque",color:"#FBCA3E"},
-  // {title:"Title 2" , date:"2015" , descr:"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit, cumque",color:"#C42D8C"},
-  // {title:"Title 1" , date:"2014" , descr:"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit, cumque",color:"#68D543"},
-  // {title:"Title 0" , date:"2013" , descr:"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit, cumque",color:"#9325D1"},
+  },
 ]
 </script>
 
 <template lang='pug'>
-//- img(:src="gif")
 .timeline-area
+  .line
   .ul
     .li(
       v-for="(item,index) of experienceDataArr"
@@ -211,32 +133,37 @@ const  experienceDataArr = [
       :class="`item${index}`"
       :style="`--accent-color: ${ item.color }`"
     )
-      .date {{ item.date }}
-      .content
-        .title {{ item.title }}
-        .descr-area(v-for="descr of item.descrArr" :key="descr")
-          .subtitle {{ descr.subtitle }}
-          .desc(v-for="desc of descr.desc" :key="desc")
-            img(:src="gif" style="width: 22px; padding-right:5px;")
-            span {{ desc }}
-  .dot
+      .card
+        .date {{ item.date }}
+        .content
+          .title {{ `# ${item.title}` }}
+          .descr-area(v-for="descr of item.descrArr" :key="descr")
+            .subtitle {{ descr.subtitle }}
+            .desc(v-for="desc of descr.desc" :key="desc")
+              img(:src="gif" style="width: 22px; padding-right:5px;")
+              span {{ desc }}
+      .dot(:class="`dot${index}`")
 </template>
 
 <style lang="scss" scoped>
 .timeline-area {
   position: relative;
-  margin-top: 100px;
+  margin: 100px 20px 0 20px;
+  .line {
+    // content: "";
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 5px;
+    height: 0%;
+    border-radius: 20px;
+    background-color: white;
+    @media (max-width: 768px) {
+      left: 20px;
+    }
+  }
 }
-.dot {
-  top: 0;
-  left: 50%;
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  transform: translate(-50%, 0%);
-  background-color: pink;
-}
+
 .ul {
   width: 100%;
   color: black;
@@ -247,42 +174,73 @@ const  experienceDataArr = [
   list-style: none;
   // width: min(60rem, 90%);
   margin-inline: auto;
-  &::before {
-    content: "";
-    grid-column: 1;
-    grid-row: 1 / span 20;
-    background: rgb(225, 225, 225);
+
+  .li:nth-child(odd) {
+    .dot {
+      // z-index: 100;
+      transform: translate(-50%, 0);
+      right: -78px;
+      @media (max-width: 768px) {
+        left: -40px;
+      }
+    }
+  }
+  .li:nth-child(even) {
+    .dot {
+      // z-index: 100;
+      transform: translate(50%, 0);
+      left: -78px;
+      @media (max-width: 768px) {
+        left: -60px;
+      }
+
+    }
   }
   .li {
-    //
+    // opacity: 0;
+    position: relative;
     grid-column: 2;
     margin-inline: 1.5rem;
     grid-row: span 2;
     display: grid;
     grid-template-rows: min-content min-content min-content;
+    .dot {
+      opacity: 0;
+      top: 15px;
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: var(--accent-color);
+    }
+
+    .card:hover {
+      transition: all 0.3s ease-in-out;
+      // scale: 1.1;
+      transform: translateY(-10px);
+      @media (max-width: 768px) {
+        // left: -60px;
+        transform: translateY(0);
+      }
+    }
+
     .date {
+      font-family: Chokokutai;
       height: 3rem;
       margin-inline: calc(1.5rem * -1);
       text-align: center;
+      box-shadow: inset -6px -10px 9px rgba(0, 0, 0, 0.1);
       background-color: var(--accent-color);
       color: white;
-      font-size: 1.25rem;
+      font-size: 1.8rem;
       font-weight: 700;
+      letter-spacing: 5px;
       display: grid;
       place-content: center;
       position: relative;
       border-radius: calc(3rem / 2) 0 0 calc(3rem / 2);
-      &::after {
-        content: "";
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        background-color: var(--accent-color);
-        border: 0.3rem solid var(--accent-color);
-        border-radius: 50%;
-        top: 50%;
-        transform: translate(50%, -50%);
-        right: calc(100% + 2rem + 0.25rem / 2);
+      @media (max-width: 768px) {
+        font-size: 1.2rem;
       }
       &::before {
         content: "";
@@ -297,49 +255,30 @@ const  experienceDataArr = [
       }
     }
     .content {
-      background-color: rgb(255, 255, 255);
+      color: white;
+      background-image: linear-gradient(-180deg, #924d85 0%, #104454 100%);
+      border: 1px solid #e6e6e6;
+      border-top: #a3a3a3;
       position: relative;
       padding: 20px 25px;
       border-radius: 0 0px 20px 20px;
       .title {
         overflow: hidden;
         font-weight: 500;
-        font-size: 1.2rem;
+        color: #f4ff55;
+        font-size: 0.9rem;
+        padding-bottom: 8px;
       }
       .descr-area {
         padding-block-end: 1.5rem;
         font-weight: 300;
         .subtitle {
-          font-size: 1rem;
+          font-size: 1.2rem;
+          font-weight: 500;
         }
         .desc {
           padding-top: 5px;
           font-size: 0.9rem;
-          // &::before {
-          //   content:'';
-          //   clear:both;
-          //   height:20px;
-          //   width:20px;
-          //   display:block;
-          //   --img:v-bind(gif);
-          //   background-image: url(var(--img));
-          //   // background-color: gr;
-          //   // background-image: url(https://susscargologistics.com/wp-content/uploads/2020/04/green.gif);
-          //   background-size:100%;
-          //   // content: "4545 ";
-          //   // width: 10px;
-          //   // height: 10px;
-          //   // background-image: v-bind(gif);
-          //   // position: absolute;
-          //   // top:0;
-          //   // width:;
-          //   // height: 0.5rem;
-          //   // background: rgba(0, 0, 0, 0.5);
-          //   // left: 50%;
-          //   // border-radius: 50%;
-          //   // filter: blur(5px);
-          //   // transform: translate(-50%, 50%);
-          // }
         }
       }
     }
@@ -352,22 +291,17 @@ const  experienceDataArr = [
 }
 
 /* shadows */
-.title::before,
-.descr-area::before {
+.title::before {
   content: "";
   position: absolute;
-  width: 90%;
-  height: 0.5rem;
+  width: 100%;
+  height: 8px;
+  top: -6px;
   background: rgba(0, 0, 0, 0.5);
   left: 50%;
   border-radius: 50%;
   filter: blur(5px);
   transform: translate(-50%, 50%);
-}
-.title::before {
-  // bottom: calc(100% + 0.125rem);
-  // bottom: ;
-  top: -5px;
 }
 
 .descr-area::before {
@@ -376,17 +310,29 @@ const  experienceDataArr = [
 }
 
 @media (min-width: 768px) {
+  .line {
+    left: 0;
+  }
   .ul {
     grid-template-columns: 1fr 0.25rem 1fr;
   }
-  .ul::before {
-    grid-column: 2;
-  }
+
   .li:nth-child(odd) {
     grid-column: 1;
+    // .dot {
+    //   // z-index: 100;
+    //   // right: -78px;
+    //   left: 20px;
+    // }
   }
   .li:nth-child(even) {
     grid-column: 3;
+    // .dot {
+    //   // z-index: 100;
+    //   // left: -78px;
+    //   left: 20px;
+
+    // }
   }
   /* start second card */
   .li:nth-child(2) {
