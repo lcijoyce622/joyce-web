@@ -2,9 +2,17 @@
 // import { defineComputed } from 'vue'
 import { computed } from 'vue'
 const props = defineProps({  
+  customText: {
+    type: String,
+    default: ""
+  },
   percent: {
     type: Number,
     default: 0
+  },
+  color: {
+    type: String,
+    default: '#ffffff'
   }
 })
 const leftDeg = computed(() => {
@@ -22,7 +30,7 @@ const rightDeg = computed(() => {
 #circleProgress
   .circular
     .inner
-    .number {{`${props.percent}%`}}
+    .number {{ props.customText? props.customText :`${props.percent}%` }}
     .circle
       .bar.right
         .progress(:style="`transform: rotate(${leftDeg}deg);`")
@@ -72,12 +80,44 @@ const rightDeg = computed(() => {
       .progress {
         transition: all ease .2s;
         position: absolute;
-        height: calc(100% - 20px) ;
-        width: calc(100% - 20px);
+        height: calc(100% - 10px) ;
+        width: calc(100% - 10px);
         border-radius: 100%;
         clip-path: polygon(50% 0%,50% 100%,0% 100%,0% 0%);
-        border: 10px solid white;
+        border: 5px solid v-bind('props.color');
+        &::after {
+          content: "";
+          width: 20px;
+          height: 20px;
+          background: v-bind('props.color');
+          border-radius: 50%;
+        }
       }
+      .g-circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    // &::before,
+    // &::after {
+    //     content: "";
+    //     position: absolute;
+    //     top: 90px;
+    //     left: 90px;
+    //     width: 20px;
+    //     height: 20px;
+    //     border-radius: 50%;
+    //     background: #FFCDB2;
+    //     z-index: 1;
+    // }
+    
+    &::before {
+        transform: translate(0, -90px);
+    }
+    
+    &::after {
+        transform: rotate(90deg) translate(0, -90px) ;
+    }
+}
     }
     .right {
       .progress{

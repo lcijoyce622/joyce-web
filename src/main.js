@@ -2,7 +2,6 @@ import './styles/css/main.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-// import * as dialog from "@/plugins/dialog";
 
 import App from './App.vue'
 import router from './router'
