@@ -12,7 +12,8 @@ const DialogTest = async () => {
   await Dialog({
     texts: ["確定要關閉這個網站嗎！？"],
     okText: "沒有啦開玩笑的",
-    cancelText: "取消"
+    cancelText: "取消",
+    showBug: true,
   });
 };
 const emit = defineEmits(['full-screen', 'close-file-bar'])

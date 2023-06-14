@@ -2,11 +2,16 @@
 import * as _ from "lodash";
 import emailjs from "emailjs-com";
 import { reactive } from "vue";
+import { Dialog } from "@/plugins/dialog/index.js";
+
+const DialogOpen = async (content) => {
+  await Dialog(content);
+};
 const linkObj= {
   linkedin:{ 
     img: new URL(`../assets/LinkedIn_icon.svg`, import.meta.url).href,
     title: "Chia Yi Lin",
-    url: "https://www.linkedin.com/in/chia-yi-lin-11167321a/"
+    url: "https://www.linkedin.com/in/chia-yi-lin/"
   },
   github: {
     img: new URL(`../assets/github-icon.svg`, import.meta.url).href,
@@ -16,8 +21,8 @@ const linkObj= {
   gmail: {
     img: new URL(`../assets/gmail.svg`, import.meta.url).href,
     title: "lcijoyce622@gmail.com",
-    url: "lcijoyce622@gmail.com"
-  },
+    url: "mailto:lcijoyce622@gmail.com"
+  }
 }
 const formData = reactive({
   name: "",
@@ -25,22 +30,59 @@ const formData = reactive({
   subject: "",
   message: "",
 });
-const sendEmail= _.debounce (function (e) {
-  emailjs.sendForm(
+const clearForm = () => {
+  formData.name = "";
+  formData.email = "";
+  formData.subject = "";
+  formData.message = "";
+};
+const sendEmail= _.debounce (async function (e) {
+  console.log("send");
+  if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+    await DialogOpen({
+    texts: ["請填寫完整資料", "不然我無法聯繫你呦！"],
+    okText: "好啦！",
+    showCancel: false,
+    showBug: true,
+  });
+    return;
+  }
+  const rgx = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
+  if (!rgx.test(formData.email)) {
+    await DialogOpen({
+    texts: ["請填寫正確的Email", "不然我無法聯繫你呦！"],
+    okText: "好啦！",
+    showCancel: false,
+    showBug: true,
+  });
+    return;
+  }
+  await emailjs.sendForm(
     "service_10m4cnh",
     "contact_form",
     e.target,
     "user_GJoDLxPXXLICwlrwVzSqA",
     formData
-  );
+  ).then(async () => {
+    await DialogOpen({
+    texts: ["感謝您的聯絡","我會盡快聯繫你呦！"],
+    okText: "啾咪 <3",
+    showCancel: false
+  });
+    clearForm();
+  }, (error) => {
+    console.log(error.text);
+  });
 
 }, 400, { leading: true, trailing: false })
 
+function openLink (url) {
+  window.open(url, "_blank");
+}
 
 </script>
 
 <template lang='pug'>
-// TODO 驗證
 #contactMe
   .animate
     span(style="--i:1") C
@@ -54,11 +96,11 @@ const sendEmail= _.debounce (function (e) {
     span(style="--i:9") M
     span(style="--i:10") E
   .img-area
-    .link(v-for="(link,index) in linkObj" :key="index")
+    .link(v-for="(link,index) in linkObj" :key="index" @click="openLink(link.url)")
       img.img(:src="link.img")
       .title {{ link.title }}
   .form-area
-    .form(@submit.prevent="")
+    form.form(@submit.prevent="sendEmail")
       p.light-text Mail Me
       .col
         input(v-model="formData.name" maxlength="30" type="text" name="name" autocomplete="off" required)
@@ -72,7 +114,7 @@ const sendEmail= _.debounce (function (e) {
       .col
         textarea(v-model="formData.message" maxlength="500" name="message" rows="5" cols="30" autocomplete="off" required)
         span.label Message
-      .btn(@click="sendEmail") Contact Me Now !
+      input.btn(type="submit" value="Contact Me Now !")
 </template>
 
 <style lang="scss" scoped>
@@ -228,7 +270,7 @@ const sendEmail= _.debounce (function (e) {
   }
 }
 .btn {
-  user-select: none;
+  // user-select: none;
   text-align: center;
   letter-spacing: 3px;
   padding: 10px 20px;
