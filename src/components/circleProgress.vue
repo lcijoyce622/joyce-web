@@ -49,6 +49,8 @@ const rightDeg = computed(() => {
     width: 100%;
     padding-bottom: 100%;
     position: relative;
+    display: flex;
+    align-items: center;
     .inner{
       position: absolute;
       z-index: 6;
@@ -71,53 +73,22 @@ const rightDeg = computed(() => {
       color: white;
     }
     .bar {
-      // box-sizing: border-box;
       position: absolute;
       height: 100%;
       width: 100%;
       border-radius: 100%;
       clip-path: polygon(50% 0%,100% 0%,100% 100%,50% 100%);
       .progress {
+        padding: 5px;
         transition: all ease .2s;
         position: absolute;
-        height: calc(100% - 10px) ;
-        width: calc(100% - 10px);
+        height: calc(100% - 20px) ;
+        width: calc(100% - 20px);
         border-radius: 100%;
         clip-path: polygon(50% 0%,50% 100%,0% 100%,0% 0%);
         border: 5px solid v-bind('props.color');
-        &::after {
-          content: "";
-          width: 20px;
-          height: 20px;
-          background: v-bind('props.color');
-          border-radius: 50%;
-        }
+        box-shadow: 0px 0px 2px 1px v-bind('props.color'), inset 0px 0px 5px 1px v-bind('props.color');
       }
-      .g-circle {
-    position: absolute;
-    top: 0;
-    left: 0;
-    // &::before,
-    // &::after {
-    //     content: "";
-    //     position: absolute;
-    //     top: 90px;
-    //     left: 90px;
-    //     width: 20px;
-    //     height: 20px;
-    //     border-radius: 50%;
-    //     background: #FFCDB2;
-    //     z-index: 1;
-    // }
-    
-    &::before {
-        transform: translate(0, -90px);
-    }
-    
-    &::after {
-        transform: rotate(90deg) translate(0, -90px) ;
-    }
-}
     }
     .right {
       .progress{
@@ -131,5 +102,6 @@ const rightDeg = computed(() => {
       }
     }
   }
+  
 }
 </style>

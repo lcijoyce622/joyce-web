@@ -1,5 +1,6 @@
 <script setup>
 import circleProgress from "@/components/circleProgress.vue";
+import lineProgress from "@/components/lineProgress.vue";
 import { onMounted, onBeforeUnmount, ref } from 'vue';
 import VanillaTilt from 'vanilla-tilt';
 const vueChart =  ref(null);
@@ -10,11 +11,9 @@ const nuxtPercent = ref(0);
 const vueMax = 75;
 const nuxtMax = 70;
 const timer = setInterval(() => {
-  
   if(vuePercent.value >= vueMax && nuxtPercent.value >= nuxtMax) { clearInterval(timer); return};
   vuePercent.value = vuePercent.value + vueMax / 20;
   nuxtPercent.value = nuxtPercent.value + nuxtMax / 20;
-
 }, 100);
 onBeforeUnmount(() => {
   clearInterval(timer);
@@ -31,7 +30,9 @@ const logoObj = {
   frontend: new URL(`../assets/frontend.png`, import.meta.url).href,
   pug: new URL(`../assets/pug.png`, import.meta.url).href,
   sass: new URL(`../assets/sass.svg`, import.meta.url).href,
-  css: new URL(`../assets/css.svg`, import.meta.url).href,
+  css: new URL(`../assets/css3.svg`, import.meta.url).href,
+  js: new URL(`../assets/js.svg`, import.meta.url).href,
+  git: new URL(`../assets/git.svg`, import.meta.url).href,
 }
 </script>
 
@@ -57,8 +58,40 @@ const logoObj = {
         .tag(v-for='item of ["Nuxt.js", "SPA", "SSR", "SEO"]' :key='item') {{ `# ${item}` }}
   .frontend-chart(ref="frontendChart")
     img.logo(:src="logoObj.frontend")
-    .skill-circle
-      circleProgress(:percent="50")
+    .skill-process
+      .process-area
+        .col
+          img.f-logo(:src="logoObj.html")
+          .skill-group
+            p HTML
+            lineProgress(:progress="80")
+        .col
+          img.f-logo(:src="logoObj.pug")
+          .skill-group
+            p PUG
+            lineProgress(:progress="80")
+        .col
+          img.f-logo(:src="logoObj.js")
+          .skill-group
+            p JavaScript
+            lineProgress(:progress="65")
+      .process-area
+        .col
+          img.f-logo(:src="logoObj.css")
+          .skill-group
+            p CSS
+            lineProgress(:progress="60")
+        .col
+          img.f-logo(:src="logoObj.sass")
+          .skill-group
+            p SASS
+            lineProgress(:progress="80")
+        .col
+          img.f-logo(:src="logoObj.git")
+          .skill-group
+            p GIT
+            lineProgress(:progress="70")
+      //- circleProgress(:percent="50")
 
 </template>
 
@@ -74,12 +107,12 @@ const logoObj = {
   display: grid;
   justify-content: center;
   gap: 120px;
+  padding: 20px;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: "vue nuxt" "frontend frontend";
   .card {
     position: relative;
-    width: 100%;
-    // margin: 0 20px;
+    // width: 100%;
     border: 1px solid #ccc;
     padding: 20px;
     border-radius: 20px;
@@ -152,8 +185,30 @@ const logoObj = {
   .frontend-chart {
     @extend .card;
     grid-area: frontend;
+    padding: 40px 40px;
     // background-color: rgb(234, 227, 23);
+    .skill-process {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
 
+      .process-area {
+        .col {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 20px;
+          .skill-group {
+            width: 100%;
+          }
+        }
+      }
+
+    }
+  }
+  .f-logo {
+    width: 50px;
+    height: 50px;
   }
 
 }
