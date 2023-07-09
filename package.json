@@ -15,6 +15,7 @@
     "lodash": "^4.17.21",
     "pinia": "^2.0.36",
     "prismjs": "^1.29.0",
+    "vanilla-tilt": "^1.8.0",
     "vue": "^3.3.2",
     "vue-pug-plugin": "^2.0.3",
     "vue-router": "^4.2.0"
