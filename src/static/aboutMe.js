@@ -44,7 +44,7 @@ const jsData = [
   {class:[`pl-60`,`f-14`], tag:"", content:`"Vue", "Nuxt", "HTML5", "Pug", "CSS3", "SASS", "JavaScript", "Git"`, },
   {class:[`pl-40`,`f-14`], tag:"", content:"];", },
   {class:[`pl-40`,`f-14`], tag:"", content:`const frameworks = ["Vue.js", "Nuxt.js"];`, },
-  {class:[`pl-40`,`f-14`], tag:"", content:`const tools = ["GitHub", "Figma", "AntDesign", "iVIewDesign", "Notion", "Miro", "Slack" ];`, },
+  {class:[`pl-40`,`f-14`], tag:"", content:`const tools = ["GitHub", "Figma", "AntDesign", "iViewDesign", "Notion", "Miro", "Slack" ];`, },
   {class:[`pl-40`,`f-14`], tag:"", content:`for (let i = 0; i < coreTechnologies.length; i++) {`, },
   {class:[`pl-60`,`f-14`], tag:"", content:`console.log("掌握核心技術："+ coreTechnologies[i]);`, },
   {class:[`pl-40`,`f-14`], tag:"", content:`}`, },
