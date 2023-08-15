@@ -2,8 +2,8 @@
 import { ref, watch } from 'vue';
 import { deviceStore } from '@/stores/device.js';
 
-// import phoneDemo from '@/assets/phoneDemo.mp4';
-// import normalDemo from '@/assets/normalDemo.mp4';
+import phoneDemo from '@/assets/phoneDemo.mp4';
+import normalDemo from '@/assets/normalDemo.mp4';
 const store = deviceStore()
 const phoneVideo =  ref(null);
 const normalVideo =  ref(null);
@@ -35,7 +35,7 @@ watch(() => store.deviceIsMobile, (val) => {
 
 <template lang='pug'>
 h1 {{ `／／／／／／／／／／／⚠️ 施工中 ⚠️／／／／／／／／／／` }}
-//- .relithe
+.relithe
   .phone-area
     video(
       ref="phoneVideo"
