@@ -2,9 +2,12 @@
 import Header from "@/components/header.vue"
 import NavBar from "@/components/navbar.vue"
 import Footer from "@/components/footer.vue"
-import { ref } from "vue"
+import { onBeforeUnmount, onBeforeMount, onMounted } from "vue"
+import { deviceStore } from '@/stores/device.js';
+import debounce from "lodash/debounce";
+
 // 開啟全螢幕 ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
-const fullscreenElement = ref(false);
+// const fullscreenElement = ref(false);
 function clickFullScreen () {
   const elem = document.getElementById("main-content");
   if (elem.requestFullscreen) {
@@ -16,18 +19,28 @@ function clickFullScreen () {
   } else if (elem.webkitRequestFullscreen) {
     elem.webkitRequestFullscreen();
   }
-  fullscreenElement.value = true;
+  // fullscreenElement.value = true;
 };
-function exitFullscreen () {
-  if (document.fullscreenElement) {
-    document.exitFullscreen();
-    fullscreenElement.value = false;
-  } else {
-    document.documentElement.requestFullscreen();
-  }
-};
-import { RouterView } from 'vue-router'
-
+// function exitFullscreen () {
+//   if (document.fullscreenElement) {
+//     document.exitFullscreen();
+//     fullscreenElement.value = false;
+//   } else {
+//     document.documentElement.requestFullscreen();
+//   }
+// };
+const store = deviceStore()
+onBeforeMount(() => {
+  console.log("default");
+  window.removeEventListener("resize", store.ResizeWindow);
+  const debouncedResize = debounce(store.ResizeWindow, 200);
+  window.addEventListener("resize", debouncedResize);
+})
+onMounted(() => {
+})
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", store.ResizeWindow);
+})
 </script>
 
 // TODO nav bar(tabs)
@@ -38,18 +51,8 @@ import { RouterView } from 'vue-router'
 Header.header(@full-screen="clickFullScreen")
 #Default
   NavBar.navbar
-  h1(v-if="fullscreenElement" @click="exitFullscreen") 離開全螢幕
   RouterView#main-content
-    //- RouterLink(to="/") Home
 Footer.footer
-
-//- .main
-//-   RouterLink(to="/") Home
-//-   RouterLink(to="/about") About
-//-   RouterLink(to="/test") TEST
-//-   RouterView
-//-   //- HelloWorld
-//-   p {{ 4444545 }}
 </template>
 
 <style lang="scss" scoped>
@@ -75,6 +78,7 @@ Footer.footer
   }
   #main-content {
     padding-bottom: 30px;
+    margin-top: 50px;
   }
 }
 
