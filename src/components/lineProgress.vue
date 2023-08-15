@@ -44,7 +44,7 @@ const props = defineProps({
   100% {
     width: var(--line-progress-width);
     background: #fef65c;
-    box-shadow: 0 0 10px #fef65c;
+    box-shadow: 0 0 4px #fef65c;
   }
 }
 </style>

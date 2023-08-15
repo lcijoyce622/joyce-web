@@ -1,9 +1,10 @@
+
 <script setup>
 </script>
 
 <template lang='pug'>
 .footer
-  p © 202120212021202120212021
+  p Copyright © 2023 Chia-yi Lin.
 </template>
 
 <style lang="scss" scoped>
@@ -11,7 +12,12 @@
 .footer {
   height: 25px;
   width: 100%;
+  color: white;
   background-color: #3779C6;
-
+  letter-spacing: 2px;
+  p {
+    text-align: center;
+    margin: auto;
+  }
 }
 </style>
