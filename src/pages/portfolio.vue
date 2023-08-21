@@ -2,8 +2,8 @@
 import { ref, watch } from 'vue';
 import { deviceStore } from '@/stores/device.js';
 
-import phoneDemo from '@/assets/phoneDemo.mp4';
-import normalDemo from '@/assets/normalDemo.mp4';
+import phone from '@/assets/phone.mp4';
+import normal from '@/assets/normal.mp4';
 const store = deviceStore()
 const phoneVideo =  ref(null);
 const normalVideo =  ref(null);
@@ -44,7 +44,7 @@ h1 {{ `／／／／／／／／／／／⚠️ 施工中 ⚠️／／／／／�
       @mouseover="phonePlay"
       @mouseleave="phonePause"
     )
-      source(:src="phoneDemo" type="video/mp4")
+      source(:src="phone" type="video/mp4")
   .text-area
     .title Relithe 精品循環平台
     p 與泰爾科技團隊共同打造及維護的精品循環平台，提供用戶瀏覽、搜尋、分享及購買商品的功能，並且能夠透過後台管理系統管理商品、訂單、用戶、折扣碼、活動及網站內容。
@@ -56,7 +56,7 @@ h1 {{ `／／／／／／／／／／／⚠️ 施工中 ⚠️／／／／／�
       @mouseover="normalPlay"
       @mouseleave="normalPause"
     )
-      source(:src="normalDemo" type="video/mp4")
+      source(:src="normal" type="video/mp4")
 </template>
 
 <style lang="scss" scoped>
@@ -72,7 +72,6 @@ h1 {{ `／／／／／／／／／／／⚠️ 施工中 ⚠️／／／／／�
   }
 }
 .web-area {
-  grid-area: normal;
 }
 .phone-area {
   grid-area: phone;
