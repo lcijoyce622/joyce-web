@@ -1,5 +1,5 @@
 <script setup>
-// import MainContent from "@/components/mainContent.vue"
+//- 主要畫面(coding頁)
 import Prism from "prismjs";
 import "@/styles/css/prism.css";
 import codeTemplate from "@/components/codeTemplate.vue"

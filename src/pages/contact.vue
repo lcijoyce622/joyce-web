@@ -1,4 +1,5 @@
 <script setup>
+//- 聯絡我頁面
 import * as _ from "lodash";
 import emailjs from "emailjs-com";
 import { reactive } from "vue";
@@ -37,7 +38,6 @@ const clearForm = () => {
   formData.message = "";
 };
 const sendEmail= _.debounce (async function (e) {
-  console.log("send");
   if (!formData.name || !formData.email || !formData.subject || !formData.message) {
     await DialogOpen({
     texts: ["請填寫完整資料", "不然我無法聯繫你呦！"],
@@ -132,9 +132,11 @@ function openLink (url) {
   height: 50px;
 }
 .img-area {
-  display: flex;
+  display: grid;
   justify-content: space-evenly;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
+  margin-top: 50px;
   .link {
     text-align: center;
     @media (max-width: 768px) {
@@ -148,7 +150,7 @@ function openLink (url) {
   position: relative;
   height: 560px;
   max-width: 560px;
-  margin: 20px auto;
+  margin: 60px auto;
   border-radius: 5px;
   background-color: #2e2e2e;
   overflow: hidden;
@@ -271,6 +273,7 @@ function openLink (url) {
 }
 .btn {
   // user-select: none;
+  font-size: 1.3rem;
   text-align: center;
   letter-spacing: 3px;
   padding: 10px 20px;

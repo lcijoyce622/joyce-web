@@ -1,4 +1,5 @@
 <script setup>
+//- 經歷頁面(時間軸)
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { ref } from "vue";

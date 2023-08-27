@@ -19,19 +19,9 @@ function clickFullScreen () {
   } else if (elem.webkitRequestFullscreen) {
     elem.webkitRequestFullscreen();
   }
-  // fullscreenElement.value = true;
 };
-// function exitFullscreen () {
-//   if (document.fullscreenElement) {
-//     document.exitFullscreen();
-//     fullscreenElement.value = false;
-//   } else {
-//     document.documentElement.requestFullscreen();
-//   }
-// };
 const store = deviceStore()
 onBeforeMount(() => {
-  console.log("default");
   window.removeEventListener("resize", store.ResizeWindow);
   const debouncedResize = debounce(store.ResizeWindow, 200);
   window.addEventListener("resize", debouncedResize);
@@ -43,10 +33,6 @@ onBeforeUnmount(() => {
 })
 </script>
 
-// TODO nav bar(tabs)
-// TODO side bar(file tree)
-// TODO main(coding area)
-// TODO footer(terminal)
 <template lang="pug">
 Header.header(@full-screen="clickFullScreen")
 #Default

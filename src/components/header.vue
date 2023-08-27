@@ -11,7 +11,7 @@ function CloseFlow () {
 const DialogTest = async () => {
   await Dialog({
     texts: ["確定要關閉這個網站嗎！？"],
-    okText: "沒有啦開玩笑的",
+    okText: "開玩笑的><",
     cancelText: "取消",
     showBug: true,
   });

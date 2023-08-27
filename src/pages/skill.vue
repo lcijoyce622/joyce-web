@@ -24,7 +24,6 @@ onBeforeUnmount(() => {
 });
 //--------------------
 onMounted(() => {
-  console.log(store.deviceIsMobile);
   if (store.deviceIsMobile) return;
   VanillaTilt.init(vueChart.value, { max: 25, speed: 400 });
   VanillaTilt.init(nuxtChart.value, { max: 25, speed: 400 });
@@ -119,7 +118,7 @@ const logoObj = {
   padding: 20px;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: "vue nuxt" "frontend frontend";
-  @media (max-width: 768px) {
+  @media (max-width: 1250px) {
     grid-template-columns: 1fr;
     grid-template-areas: "vue" "nuxt" "frontend";
     gap: 50px;
