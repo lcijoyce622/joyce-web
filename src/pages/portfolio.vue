@@ -63,7 +63,7 @@ watch(() => store.deviceIsMobile, (val) => {
     )
       source(:src="normal" type="video/mp4")
 .product-area
-  a.product-link.relithe-phone(target="_blank" :href="`https://lcijoyce622.github.io/f2e-product/`")
+  a.product-link.relithe-phone
     .product
       img(:src="phoneRe")
       .mask
