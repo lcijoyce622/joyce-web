@@ -45,6 +45,12 @@ const OpenFolder = (file) => {
   };
   router.push(file.route);
 }
+const ToGithubPage = () => {
+  window.open("https://github.com/lcijoyce622");
+}
+const ToSettingPage = () => {
+  window.open("https://www.linkedin.com/in/chia-yi-lin/");
+}
 </script>
 
 <template lang='pug'>
@@ -53,8 +59,8 @@ const OpenFolder = (file) => {
     .top-area
       .icon(v-for="page in pages" :key="page.id" :class="page.icon" @click="router.push(page.route)")
     .bottom-area
-      .icon.icon-github-inverted
-      .icon.icon-settings-gear
+      .icon.icon-github-inverted(@click="ToGithubPage")
+      .icon.icon-settings-gear(@click="ToSettingPage")
   .file-bar
     //- 第一層
     .file(v-for="file in files" :key="file.id")

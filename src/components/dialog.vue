@@ -66,7 +66,8 @@
   }
   .bug {
     position: absolute;
-    top: 0;
+    top: -15px;
+    left: -15px;
     width: 50px;
     margin: 0 auto;
     display: block;
@@ -78,10 +79,11 @@
 // 元件
 #Dialog {
   .content {
-    border: 5px solid #64ffcb49;
-    background: linear-gradient(30deg,#f9949486, #9ca4f998);
+    border: 3px solid #64ffcb7a;
+    // background: linear-gradient(30deg,#f99494ba, #9ca4f9c3);
+    background: linear-gradient(30deg,#d1d4cfaa, #83ffa2aa);
     border-radius: 5px;
-    padding: 25px 60px;
+    padding: 25px 30px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     display: grid;
     grid-template-rows: auto auto;
@@ -90,6 +92,7 @@
       "texts"
       "btns";
     .texts {
+      color: #000;
       font-size: 1rem;
       text-align: center;
       grid-area: "texts";
@@ -118,7 +121,7 @@
   }
   .cancel {
     transition: all 0.2s ease-in-out;
-    background: rgb(187, 187, 187);
+    background: rgb(117, 117, 117);
     &:hover {
       background: #ffffff;
       color: #000000;
@@ -131,9 +134,9 @@
   .ok {
     transition: all 0.2s ease-in-out;
     color: #fff;
-    background: #2b3f63;
+    background: #162f5c;
     &:hover {
-      background: #b1dcfd;
+      background: #ffffff;
       color: #000000;
       transform: scale(1.1);
 
