@@ -4,7 +4,7 @@
 
 <template lang='pug'>
 .footer
-  p Copyright © 2023 Chia-yi Lin.
+  p Copyright © 2023 CHIA YI LIN.
 </template>
 
 <style lang="scss" scoped>
